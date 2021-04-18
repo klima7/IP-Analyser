@@ -5,12 +5,13 @@
 
 class IpData {
 public:
+    IpData(): IpData(0) {};
     IpData(const IpData &ipData);
     IpData operator&(const IpData &other) const;
     IpData operator|(const IpData &other) const;
     IpData operator~() const;
-protected:
-    IpData(uint32_t data=0);
+private:
+    IpData(uint32_t data);
     uint32_t data;
 };
 
