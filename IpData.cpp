@@ -20,11 +20,3 @@ IpData IpData::operator~() const {
     return IpData(~data);
 }
 
-IpData IpData::operator+(int num) const {
-    return IpData(data + (uint32_t)num);
-}
-
-IpData IpData::operator-(int num) const {
-    return IpData(data - (uint32_t)num);
-}
-

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "IpMask.h"
+#include "IpException.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ IpMask::IpMask(const IpData &data): IpData(data) {
 
 uint32_t IpMask::cvt_length2binary(unsigned int length) {
     if(length > 32)
-        throw InvalidMaskException("Mask length is out of bounds");
+        throw IpException("Mask length is out of bounds");
     if(length == 0) return 0;
     uint32_t mask = 0;
     for(uint32_t one=1<<(32-length); one; one<<=1)
@@ -37,7 +38,7 @@ void IpMask::validate_binmask(uint32_t mask) {
     for(uint32_t one = 1; one>0; one<<=1) {
         bool this_set = mask & one;
         if(!this_set & prev_set)
-            throw InvalidMaskException("Provided mask has invalid format");
+            throw IpException("Provided get_mask has invalid format");
         prev_set = this_set;
     }
 }

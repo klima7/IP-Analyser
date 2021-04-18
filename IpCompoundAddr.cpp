@@ -1,20 +1,21 @@
 #include <algorithm>
 #include "IpCompoundAddr.h"
+#include "IpException.h"
 
 using namespace std;
 
 IpCompoundAddr::IpCompoundAddr(const std::string &addr, unsigned int length): IpAddr(addr) {
-    _mask = IpMask(length);
+    mask = IpMask(length);
 }
 
 IpCompoundAddr::IpCompoundAddr(const IpData &addrData, const IpData &maskData): IpAddr(addrData) {
-    _mask = IpMask(maskData);
+    mask = IpMask(maskData);
 }
 
 IpCompoundAddr IpCompoundAddr::from_text(const std::string &addr) {
     int slashes_count = count(addr.begin(), addr.end(), '/');
     if(slashes_count != 1)
-        throw InvalidAddrException("Unable to determine ip and mask parts");
+        throw IpException("Unable to determine ip and get_mask parts");
 
     int slash_pos = addr.find('/');
     string address = addr.substr(0, slash_pos);
@@ -25,44 +26,48 @@ IpCompoundAddr IpCompoundAddr::from_text(const std::string &addr) {
     try {
         length = stoi(length_str, &valid_characters);
     } catch(invalid_argument e) {
-        throw IpMask::InvalidMaskException("Mask is not a number");
+        throw IpException("Mask is not a number");
     }
 
     if(valid_characters != length_str.length())
-        throw IpMask::InvalidMaskException("Mask contains invalid characters");
+        throw IpException("Mask contains invalid characters");
 
     return IpCompoundAddr(address, length);
 }
 
-IpMask IpCompoundAddr::mask() const {
-    return _mask;
+IpMask IpCompoundAddr::get_mask() const {
+    return mask;
 }
 
-IpCompoundAddr IpCompoundAddr::network_addr() const {
-    return IpCompoundAddr(*this & mask(), mask());
+IpCompoundAddr IpCompoundAddr::get_network_addr() const {
+    return IpCompoundAddr(*this & get_mask(), get_mask());
 }
 
-IpAddr IpCompoundAddr::broadcast_addr() const {
-    return IpAddr(network_addr() | ~mask());
+IpAddr IpCompoundAddr::get_broadcast_addr() const {
+    return IpAddr(get_network_addr() | ~get_mask());
 }
 
-IpAddr IpCompoundAddr::first_host_addr() const {
-    return IpAddr(network_addr() + 1);
+IpAddr IpCompoundAddr::get_first_host_addr() const {
+    if(get_mask().length() > 30)
+        throw IpException("No usable hosts address");
+    return IpAddr(get_network_addr() | IpAddr("0.0.0.1"));
 }
 
-IpAddr IpCompoundAddr::last_host_addr() const {
-    return IpAddr(broadcast_addr() - 1);
+IpAddr IpCompoundAddr::get_last_host_addr() const {
+    if(get_mask().length() > 30)
+        throw IpException("No usable hosts address");
+    return IpAddr(get_broadcast_addr() & ~IpAddr("0.0.0.1"));
 }
 
-unsigned int IpCompoundAddr::hosts_count() const {
-    unsigned int length = mask().length();
+unsigned int IpCompoundAddr::get_hosts_count() const {
+    unsigned int length = get_mask().length();
     if(length>31) return 0;
     unsigned int count = (1 << (32 - length)) - 2;
     return count;
 }
 
 ostream& operator<<(std::ostream &os, const IpCompoundAddr &address) {
-    os << (IpAddr&)address << address.mask();
+    os << (IpAddr&)address << address.get_mask();
     return os;
 }
 

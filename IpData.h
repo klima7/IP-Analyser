@@ -9,8 +9,6 @@ public:
     IpData operator&(const IpData &other) const;
     IpData operator|(const IpData &other) const;
     IpData operator~() const;
-    IpData operator+(int num) const;
-    IpData operator-(int num) const;
 protected:
     IpData(uint32_t data=0);
     uint32_t data;
