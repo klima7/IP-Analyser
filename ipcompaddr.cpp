@@ -25,7 +25,7 @@ IpCompoundAddr IpCompoundAddr::from_text(const std::string &addr) {
     int length;
     try {
         length = stoi(length_str, &valid_characters);
-    } catch(invalid_argument e) {
+    } catch(invalid_argument &e) {
         throw IpException("Mask is not a number");
     }
 

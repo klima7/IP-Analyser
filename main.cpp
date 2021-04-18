@@ -51,7 +51,7 @@ IpCompoundAddr ask_ip() {
         try {
             cin >> address;
         }
-        catch(IpException e) {
+        catch(IpException &e) {
             cout << "Invalid IP: " << e.what() << endl;
             cout << "Enter IP again >>";
             continue;

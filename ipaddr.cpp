@@ -31,7 +31,7 @@ void IpAddr::init_from_string(const string &address) {
         if(address.at(octetStart) == '.')
             throw IpException("Address contains empty octet");
 
-        int octetEnd = address.find('.', octetStart + 1);
+        size_t octetEnd = address.find('.', octetStart + 1);
         if(octetEnd == string::npos)
             octetEnd = address.length();
 
