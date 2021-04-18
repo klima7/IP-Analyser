@@ -3,7 +3,7 @@
 
 #include <string>
 #include <stdexcept>
-#include "IpData.h"
+#include "ipdata.h"
 
 class IpAddr: public IpData {
     friend std::ostream& operator<<(std::ostream &os, const IpAddr &address);

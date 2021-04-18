@@ -1,9 +1,9 @@
-#ifndef IPANALYSER_IPCOMPOUNDADDR_H
-#define IPANALYSER_IPCOMPOUNDADDR_H
+#ifndef IPANALYSER_IPCOMPADDR_H
+#define IPANALYSER_IPCOMPADDR_H
 
 #include <string>
-#include "IpAddr.h"
-#include "IpMask.h"
+#include "ipaddr.h"
+#include "ipmask.h"
 
 class IpCompoundAddr: public IpAddr {
 public:

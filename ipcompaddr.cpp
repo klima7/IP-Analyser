@@ -1,6 +1,6 @@
 #include <algorithm>
-#include "IpCompoundAddr.h"
-#include "IpException.h"
+#include "ipcompaddr.h"
+#include "ipexcept.h"
 
 using namespace std;
 

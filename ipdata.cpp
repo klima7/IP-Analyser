@@ -1,4 +1,4 @@
-#include "IpData.h"
+#include "ipdata.h"
 
 IpData::IpData(uint32_t data) {
     this->data = data;

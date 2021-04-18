@@ -1,6 +1,6 @@
 #include <iostream>
-#include "IpMask.h"
-#include "IpException.h"
+#include "ipmask.h"
+#include "ipexcept.h"
 
 using namespace std;
 

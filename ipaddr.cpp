@@ -1,7 +1,7 @@
 #include <sstream>
 #include <iostream>
-#include "IpAddr.h"
-#include "IpException.h"
+#include "ipaddr.h"
+#include "ipexcept.h"
 
 using namespace std;
 

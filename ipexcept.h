@@ -1,5 +1,5 @@
-#ifndef IPANALYSER_IPEXCEPTION_H
-#define IPANALYSER_IPEXCEPTION_H
+#ifndef IPANALYSER_IPEXCEPT_H
+#define IPANALYSER_IPEXCEPT_H
 
 #include <exception>
 #include <string>

@@ -1,9 +1,9 @@
 #include <iostream>
 #include <iomanip>
-#include "IpAddr.h"
-#include "IpMask.h"
-#include "IpCompoundAddr.h"
-#include "IpException.h"
+#include "ipaddr.h"
+#include "ipmask.h"
+#include "ipcompaddr.h"
+#include "ipexcept.h"
 
 #define QUIT_INPUT "q"
 #define FMT_WIDTH 25

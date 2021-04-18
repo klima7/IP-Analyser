@@ -2,7 +2,7 @@
 #define IPANALYSER_IPMASK_H
 
 #include <iostream>
-#include "IpData.h"
+#include "ipdata.h"
 
 class IpMask: public IpData {
 public:
