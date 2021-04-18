@@ -6,12 +6,13 @@ using namespace std;
 
 IpMask::IpMask(unsigned int length) {
     if(length > BITS_COUNT)
-        throw IpException("Mask length is out of bounds");
+        throw IpException("Mask get_length is out of bounds");
     for(int i=0; i<length; i++)
         set_bit(BITS_COUNT - 1 - i, true);
 }
 
 IpMask::IpMask(const IpData &data): IpData(data) {
+    // Check whether provided mask is valid
     bool prev_bit = false;
     for(int i=0; i<BITS_COUNT; i++) {
         bool this_bit = get_bit(i);
@@ -21,7 +22,7 @@ IpMask::IpMask(const IpData &data): IpData(data) {
     }
 }
 
-unsigned int IpMask::length() const {
+unsigned int IpMask::get_length() const {
     unsigned int length = 0;
     for(int i=0; i<BITS_COUNT; i++) {
         bool set = get_bit(BITS_COUNT-1-i);
@@ -32,6 +33,6 @@ unsigned int IpMask::length() const {
 }
 
 ostream& operator<<(std::ostream &os, const IpMask &address) {
-    os << "/" << address.length();
+    os << "/" << address.get_length();
     return os;
 }

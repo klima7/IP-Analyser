@@ -3,6 +3,7 @@
 
 #include <cstdint>
 
+// Class representing 32 bit vector divided into 4 octets
 class IpData {
 public:
     static const int OCTETS_COUNT = 4;

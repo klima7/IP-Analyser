@@ -1,3 +1,8 @@
+/*
+ * Author : Lukasz Klimkiewicz
+ * Mail   : ukasz.klimkiewicz@gmail.com
+ */
+
 #include <iostream>
 #include <iomanip>
 #include "ipcompaddr.h"

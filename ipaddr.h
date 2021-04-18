@@ -5,6 +5,8 @@
 #include <stdexcept>
 #include "ipdata.h"
 
+
+// Class representing Ip address without mask
 class IpAddr: public IpData {
     friend std::ostream& operator<<(std::ostream &os, const IpAddr &address);
 public:

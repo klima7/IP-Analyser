@@ -5,6 +5,7 @@
 #include "ipaddr.h"
 #include "ipmask.h"
 
+// Class representing ip address with mask
 class IpCompoundAddr: public IpAddr {
 public:
     IpCompoundAddr(const std::string &addr="0.0.0.0", unsigned int length=0);
