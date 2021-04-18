@@ -1,7 +1,5 @@
 #include <iostream>
 #include <iomanip>
-#include "ipaddr.h"
-#include "ipmask.h"
 #include "ipcompaddr.h"
 #include "ipexcept.h"
 
@@ -13,7 +11,6 @@ using namespace std;
 IpCompoundAddr ask_ip();
 void show_result(IpCompoundAddr &address);
 bool ask_continue();
-
 
 int main() {
     IpCompoundAddr address;
@@ -62,4 +59,3 @@ bool ask_continue() {
     getline(cin, input);
     return input != QUIT_INPUT;
 }
-
