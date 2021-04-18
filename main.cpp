@@ -66,10 +66,14 @@ IpCompoundAddr ask_ip() {
 
 void write_results(ostream &os, const IpCompoundAddr &address) {
     os << setw(FMT_WIDTH) << left << "1) Network address" << ": " << address.get_network_addr() << endl;
+
     os << setw(FMT_WIDTH) << left << "2) Hosts addresses" << ": ";
     if(address.get_hosts_count() > 0) os << address.get_first_host_addr() << " - " << address.get_last_host_addr() << endl;
     else os << "NaN" << endl;
-    os << setw(FMT_WIDTH) << left << "3) Hosts count" << ": " << address.get_hosts_count() << endl;
+
+    string hosts_count = format_with_commas(address.get_hosts_count());
+    os << setw(FMT_WIDTH) << left << "3) Hosts count" << ": " << hosts_count << endl;
+
     os << setw(FMT_WIDTH) << left << "4) Broadcast address" << ": " << address.get_broadcast_addr() << endl;
 }
 
@@ -78,4 +82,14 @@ bool ask_continue() {
     string input;
     getline(cin, input);
     return input != QUIT_INPUT;
+}
+
+string format_with_commas(int num) {
+    string str = to_string(num);
+    int n = str.length() - 3;
+    while (n > 0) {
+        str.insert(n, ",");
+        n -= 3;
+    }
+    return str;
 }
