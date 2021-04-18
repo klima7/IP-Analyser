@@ -48,22 +48,22 @@ IpAddr IpCompoundAddr::get_broadcast_addr() const {
 }
 
 IpAddr IpCompoundAddr::get_first_host_addr() const {
-    if(get_mask().length() > 30)
+    if(get_hosts_count() == 0)
         throw IpException("No usable hosts address");
     return IpAddr(get_network_addr() | IpAddr("0.0.0.1"));
 }
 
 IpAddr IpCompoundAddr::get_last_host_addr() const {
-    if(get_mask().length() > 30)
+    if(get_hosts_count() == 0)
         throw IpException("No usable hosts address");
     return IpAddr(get_broadcast_addr() & ~IpAddr("0.0.0.1"));
 }
 
 unsigned int IpCompoundAddr::get_hosts_count() const {
-    unsigned int length = get_mask().length();
-    if(length>31) return 0;
-    unsigned int count = (1 << (32 - length)) - 2;
-    return count;
+    int length = get_mask().length();
+    int addresses_count = 1 << (BITS_COUNT - length);
+    int hosts_count = max(0, addresses_count-2);
+    return hosts_count;
 }
 
 ostream& operator<<(std::ostream &os, const IpCompoundAddr &address) {

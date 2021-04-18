@@ -50,7 +50,7 @@ void show_result(IpCompoundAddr &address) {
     cout << setw(FMT_WIDTH) << left << "Usable hosts addresses" << ": ";
     if(address.get_hosts_count() > 0) cout << address.get_first_host_addr() << " - " << address.get_last_host_addr() << endl;
     else cout << "NaN" << endl;
-    cout << setw(FMT_WIDTH) << left << "Usable hosts count" << ": " << address.get_hosts_count() << endl;
+    cout << setw(FMT_WIDTH) << left << "Usable hosts addresses" << ": " << address.get_hosts_count() << endl;
 }
 
 bool ask_continue() {
