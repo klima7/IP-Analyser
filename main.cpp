@@ -65,12 +65,12 @@ IpCompoundAddr ask_ip() {
 }
 
 void write_results(ostream &os, const IpCompoundAddr &address) {
-    os << setw(FMT_WIDTH) << left << "Network address" << ": " << address.get_network_addr() << endl;
-    os << setw(FMT_WIDTH) << left << "Broadcast address" << ": " << address.get_broadcast_addr() << endl;
-    os << setw(FMT_WIDTH) << left << "Usable hosts addresses" << ": ";
+    os << setw(FMT_WIDTH) << left << "1) Network address" << ": " << address.get_network_addr() << endl;
+    os << setw(FMT_WIDTH) << left << "2) Hosts addresses" << ": ";
     if(address.get_hosts_count() > 0) os << address.get_first_host_addr() << " - " << address.get_last_host_addr() << endl;
     else os << "NaN" << endl;
-    os << setw(FMT_WIDTH) << left << "Usable hosts addresses" << ": " << address.get_hosts_count() << endl;
+    os << setw(FMT_WIDTH) << left << "3) Hosts count" << ": " << address.get_hosts_count() << endl;
+    os << setw(FMT_WIDTH) << left << "4) Broadcast address" << ": " << address.get_broadcast_addr() << endl;
 }
 
 bool ask_continue() {

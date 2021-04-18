@@ -4,7 +4,7 @@
 #include <iostream>
 #include "ipcompaddr.h"
 
-#define QUIT_INPUT "q"
+#define QUIT_INPUT "e"
 #define FMT_WIDTH 25
 #define DEFAULT_FILENAME "output.txt"
 
