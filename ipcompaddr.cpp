@@ -61,7 +61,8 @@ IpAddr IpCompoundAddr::get_last_host_addr() const {
 
 unsigned int IpCompoundAddr::get_hosts_count() const {
     int length = get_mask().get_length();
-    long hosts_count = (1 << (BITS_COUNT - length)) - 2;
+    uint64_t hosts_count = (1ull << BITS_COUNT - length);
+    hosts_count -= 2;
     if(hosts_count < 0) hosts_count = 0;
     return hosts_count;
 }

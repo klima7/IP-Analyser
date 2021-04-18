@@ -84,7 +84,7 @@ bool ask_continue() {
     return input != QUIT_INPUT;
 }
 
-string format_with_commas(int num) {
+string format_with_commas(unsigned int num) {
     string str = to_string(num);
     int n = str.length() - 3;
     while (n > 0) {

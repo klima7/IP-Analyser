@@ -11,6 +11,6 @@
 IpCompoundAddr ask_ip();
 void write_results(std::ostream &os, const IpCompoundAddr &address);
 bool ask_continue();
-std::string format_with_commas(int num);
+std::string format_with_commas(unsigned int num);
 
 #endif
