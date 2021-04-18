@@ -11,10 +11,13 @@
 
 using namespace std;
 
-int main() {
-    ofstream file;
+int main(int argc, char **argv) {
+    string filename = DEFAULT_FILENAME;
+    if(argc > 1)
+        filename = argv[1];
 
-    file.open(FILENAME, std::ios_base::app);
+    ofstream file;
+    file.open(filename, std::ios_base::app);
     if(!file.is_open())
         cout << "Unable to open file, program will continue without writing to file";
 

@@ -6,7 +6,7 @@
 
 #define QUIT_INPUT "q"
 #define FMT_WIDTH 25
-#define FILENAME "output.txt"
+#define DEFAULT_FILENAME "output.txt"
 
 IpCompoundAddr ask_ip();
 void write_results(std::ostream &os, const IpCompoundAddr &address);
