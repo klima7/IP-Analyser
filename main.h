@@ -5,8 +5,9 @@
 #include "ipcompaddr.h"
 
 #define QUIT_INPUT "e"
-#define FMT_WIDTH 25
 #define DEFAULT_FILENAME "output.txt"
+#define THOUSANDS_SEPARATOR ","
+#define FMT_WIDTH 25
 
 IpCompoundAddr ask_ip();
 void write_results(std::ostream &os, const IpCompoundAddr &address);

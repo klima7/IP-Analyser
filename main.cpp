@@ -88,7 +88,7 @@ string format_with_commas(unsigned int num) {
     string str = to_string(num);
     int n = str.length() - 3;
     while (n > 0) {
-        str.insert(n, ",");
+        str.insert(n, THOUSANDS_SEPARATOR);
         n -= 3;
     }
     return str;
