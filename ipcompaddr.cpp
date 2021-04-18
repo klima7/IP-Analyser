@@ -15,7 +15,7 @@ IpCompoundAddr::IpCompoundAddr(const IpData &addrData, const IpData &maskData): 
 IpCompoundAddr IpCompoundAddr::from_text(const std::string &addr) {
     int slashes_count = count(addr.begin(), addr.end(), '/');
     if(slashes_count != 1)
-        throw IpException("Unable to determine ip and get_mask parts");
+        throw IpException("Unable to determine ip and mask parts");
 
     int slash_pos = addr.find('/');
     string address = addr.substr(0, slash_pos);
@@ -49,13 +49,13 @@ IpAddr IpCompoundAddr::get_broadcast_addr() const {
 
 IpAddr IpCompoundAddr::get_first_host_addr() const {
     if(get_hosts_count() == 0)
-        throw IpException("No usable hosts address");
+        throw IpException("No usable hosts");
     return IpAddr(get_network_addr() | IpAddr("0.0.0.1"));
 }
 
 IpAddr IpCompoundAddr::get_last_host_addr() const {
     if(get_hosts_count() == 0)
-        throw IpException("No usable hosts address");
+        throw IpException("No usable hosts");
     return IpAddr(get_broadcast_addr() & ~IpAddr("0.0.0.1"));
 }
 

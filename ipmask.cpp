@@ -6,7 +6,7 @@ using namespace std;
 
 IpMask::IpMask(unsigned int length) {
     if(length > BITS_COUNT)
-        throw IpException("Mask get_length is out of bounds");
+        throw IpException("Mask length is out of bounds");
     for(unsigned int i=0; i<length; i++)
         set_bit(BITS_COUNT - 1 - i, true);
 }

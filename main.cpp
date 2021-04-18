@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     ofstream file;
     file.open(filename, std::ios_base::app);
     if(!file.is_open())
-        cout << "Unable to open file, program will continue without writing to file";
+        cout << "Unable to open file, program will continue without writing to file" << endl;
 
     IpCompoundAddr address;
     bool should_continue;
