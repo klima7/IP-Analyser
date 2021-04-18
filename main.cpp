@@ -5,28 +5,40 @@
 
 #include <iostream>
 #include <iomanip>
-#include "ipcompaddr.h"
+#include <fstream>
+#include "main.h"
 #include "ipexcept.h"
-
-#define QUIT_INPUT "q"
-#define FMT_WIDTH 25
 
 using namespace std;
 
-IpCompoundAddr ask_ip();
-void show_result(IpCompoundAddr &address);
-bool ask_continue();
-
 int main() {
+    ofstream file;
+
+    file.open(FILENAME, std::ios_base::app);
+    if(!file.is_open())
+        cout << "Unable to open file, program will continue without writing to file";
+
     IpCompoundAddr address;
     bool should_continue;
 
     do {
         address = ask_ip();
-        show_result(address);
+        write_results(cout, address);
+
+        if(file.is_open()) {
+            write_results(file, address);
+            file << endl;
+            if (!file.good()) {
+                cout << "Error occured while writing to file" << endl;
+                file.clear();
+            }
+        }
+
         should_continue = ask_continue();
     } while(should_continue);
 
+    if(file.is_open())
+        file.close();
     return 0;
 }
 
@@ -49,13 +61,13 @@ IpCompoundAddr ask_ip() {
     }
 }
 
-void show_result(IpCompoundAddr &address) {
-    cout << setw(FMT_WIDTH) << left << "Network address" << ": " << address.get_network_addr() << endl;
-    cout << setw(FMT_WIDTH) << left << "Broadcast address" << ": " << address.get_broadcast_addr() << endl;
-    cout << setw(FMT_WIDTH) << left << "Usable hosts addresses" << ": ";
-    if(address.get_hosts_count() > 0) cout << address.get_first_host_addr() << " - " << address.get_last_host_addr() << endl;
-    else cout << "NaN" << endl;
-    cout << setw(FMT_WIDTH) << left << "Usable hosts addresses" << ": " << address.get_hosts_count() << endl;
+void write_results(ostream &os, const IpCompoundAddr &address) {
+    os << setw(FMT_WIDTH) << left << "Network address" << ": " << address.get_network_addr() << endl;
+    os << setw(FMT_WIDTH) << left << "Broadcast address" << ": " << address.get_broadcast_addr() << endl;
+    os << setw(FMT_WIDTH) << left << "Usable hosts addresses" << ": ";
+    if(address.get_hosts_count() > 0) os << address.get_first_host_addr() << " - " << address.get_last_host_addr() << endl;
+    else os << "NaN" << endl;
+    os << setw(FMT_WIDTH) << left << "Usable hosts addresses" << ": " << address.get_hosts_count() << endl;
 }
 
 bool ask_continue() {
